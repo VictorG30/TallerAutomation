@@ -19,7 +19,9 @@
         WebElementsMicrosoft ElementsMicrosoft;
         WebElementsWindows ElementsWindows;
         WebDriverWait wait;
-        ActionsMicrosoft AM;
+        ActionsMicrosoft AMicrosoft;
+        ActionsWindows ActWind;
+
         public Microsoft()
         {
 
@@ -33,21 +35,22 @@
 
             ElementsMicrosoft = new WebElementsMicrosoft();
             ElementsWindows = new WebElementsWindows();
-            AM = new ActionsMicrosoft();
+            AMicrosoft = new ActionsMicrosoft();
+            ActWind = new ActionsWindows();
 
         }
 
         [Test, Order(1)]
 
-        public void ValidateMenu()
+        public void T1_ValidateMenu()
         {
 
             wait.Until(SeleniumExtras.WaitHelpers.
                 ExpectedConditions.ElementToBeClickable((ElementsMicrosoft.Menu)));
 
-            
 
-            AM.ValideElementsByText(ElementsMicrosoft.Menu, By.ClassName("single-link"), ConfigMicrosoft.Words);
+
+            AMicrosoft.ValideElementsByText(ElementsMicrosoft.Menu, By.ClassName("single-link"), ConfigMicrosoft.Words);
 
 
 
@@ -55,38 +58,62 @@
 
         [Test, Order(2)]
 
-        public void PrintElements()
+        public void T2_PrintElements()
         {
             wait.Until(SeleniumExtras.WaitHelpers.
                 ExpectedConditions.ElementToBeClickable((ElementsMicrosoft.MenuWindows))).Click();
 
-            //ElementsMicrosoft.MenuWindows.Click();
-
+    
             wait.Until(SeleniumExtras.WaitHelpers.
                 ExpectedConditions.ElementToBeClickable((ElementsWindows.MenuWindows10))).Click();
 
 
-           //ElementsWindows.MenuWindows10.Click();
-
-            //Actions actions = new Actions(Driver.driver);
-
-            //actions.MoveToElement(ElementsWindows.MenuWindows10).Click().Build();
-            //actions.Perform();
 
 
-            AM.PrintElements(
+            AMicrosoft.PrintElements(
                 By.XPath("//*[@id=\"uhf-g-nav\"]/ul/li[2]/div/ul"),
                 By.TagName("li"));
 
+
+        }
+
+        [Test, Order(3)]
+
+        public void T3_PrintPrices()
+        {
+
+            ActWind.SearchAny("Visual Studio");
+
+            ActWind.PrintLastWord(
+                By.XPath("//*[@id=\"coreui-productplacement-30l7ywa\"]/div[3]/div/div/ul"),
+                By.TagName("li"));
 
 
 
 
         }
 
+        [Test, Order(4)]
+
+        public void T4_ValidatePrice()
+        {
+            var Precio1 = ConfigWindows.Prices[0];
+            ElementsWindows.CardVSPro.Click();
+
+            wait.Until(SeleniumExtras.WaitHelpers.
+                ExpectedConditions.ElementToBeClickable((ElementsWindows.BtnCerrarX)));
+
+            ElementsWindows.BtnCerrarX.Click();
 
 
-        [OneTimeTearDown]
+            Action.compararStrings(By.Id("productPrice"), Precio1);
+
+
+
+        }
+
+
+            [OneTimeTearDown]
         public void CleanUp()
         {
             //Driver.driver.Quit();

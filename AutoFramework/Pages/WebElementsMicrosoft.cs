@@ -5,6 +5,9 @@
 
     public class WebElementsMicrosoft
     {
+        public string Precio1;
+        public string Precio2;
+        public string Precio3;
         public WebElementsMicrosoft()
         {
             PageFactory.InitElements(Driver.driver, this);
