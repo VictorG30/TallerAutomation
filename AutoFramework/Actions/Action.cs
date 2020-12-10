@@ -6,7 +6,7 @@
     using Pages;
     using System.Linq;
 
-    public  class Actions
+    public  class Action
     {
         public static void InitializeDriver()
         {

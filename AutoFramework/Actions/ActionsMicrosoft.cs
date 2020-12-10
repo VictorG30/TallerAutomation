@@ -4,6 +4,7 @@
     using OpenQA.Selenium;
     using OpenQA.Selenium.Chrome;
     using Pages;
+    using System;
     using System.Linq;
 
     public  class ActionsMicrosoft
@@ -14,10 +15,10 @@
         {
 
 
-            //var x = Element.FindElements(By.ClassName("single-link"));
+        
             var x = Element.FindElements(Identify);
 
-            //string[] Words = { "Microsoft 365", "Office", "Windows", "Surface", "Xbox", "Deals", "Support" };
+           
 
             foreach (var element in x)
             {
@@ -28,6 +29,22 @@
                 {
                     Assert.False(true);
                 }
+            }
+        }        
+        
+        public void PrintElements(By WebElement, By IdentifyBy)
+        {
+            var Element = Driver.driver.FindElement(WebElement);
+            var Elements = Element.FindElements(IdentifyBy);
+
+            
+
+            foreach (var ele in Elements)
+            {
+                var texto = ele.Text;
+                Console.Write(texto);
+
+
             }
         }
     }
