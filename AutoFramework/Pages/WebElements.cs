@@ -10,7 +10,7 @@
             PageFactory.InitElements(Driver.driver, this);
         }
 
-        [FindsBy(How = How.Id, Using = "shellmenu_0")]
+        [FindsBy(How = How.Id, Using = "uhf-g-nav")]
         public IWebElement MenuMicrosoft { get; set; }
 
 
