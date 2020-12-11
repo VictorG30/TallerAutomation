@@ -11,7 +11,23 @@
 
     public static class Action
     {
+        static WebDriverWait wait = new WebDriverWait(Driver.driver, TimeSpan.FromSeconds(15));
+        static WebElementsWindows ElementsWindows = new WebElementsWindows();
 
+        public static void TryCloseModal()
+        {
+            try
+            {
+                wait.Until(SeleniumExtras.WaitHelpers.
+                ExpectedConditions.ElementToBeClickable((ElementsWindows.BtnCerrarX)));
+
+                ElementsWindows.BtnCerrarX.SafeWaitForDisplayed().Click();
+            }
+            catch
+            {
+
+            }
+        }
 
         public static void compararStrings(By Element, string text2)
         {

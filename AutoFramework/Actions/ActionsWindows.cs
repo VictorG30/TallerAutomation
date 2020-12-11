@@ -36,11 +36,8 @@
             ElementsWindows.BtnSearch.Click();
 
 
-            wait.Until(SeleniumExtras.WaitHelpers.
-                ExpectedConditions.ElementToBeClickable((ElementsWindows.BtnCerrarX)));
+            Action.TryCloseModal();
 
- 
-            ElementsWindows.BtnCerrarX.SafeWaitForDisplayed().Click();
         }
 
 

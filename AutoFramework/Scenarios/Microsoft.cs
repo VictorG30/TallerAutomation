@@ -15,7 +15,7 @@
 
     public class Microsoft
     {
-        
+
         WebElementsMicrosoft ElementsMicrosoft;
         WebElementsWindows ElementsWindows;
         WebDriverWait wait;
@@ -30,14 +30,12 @@
         [OneTimeSetUp]
         public void Initialize()
         {
- 
+
 
             DriversBrowsers WD = new DriverChrome();
-
             DriversBrowsers.SelectDriver(WD);
 
-             wait = new WebDriverWait(Driver.driver, TimeSpan.FromSeconds(60));
-
+            wait = new WebDriverWait(Driver.driver, TimeSpan.FromSeconds(15));
             ElementsMicrosoft = new WebElementsMicrosoft();
             ElementsWindows = new WebElementsWindows();
             AMicrosoft = new ActionsMicrosoft();
@@ -68,7 +66,7 @@
             wait.Until(SeleniumExtras.WaitHelpers.
                 ExpectedConditions.ElementToBeClickable((ElementsMicrosoft.MenuWindows))).Click();
 
-    
+
             wait.Until(SeleniumExtras.WaitHelpers.
                 ExpectedConditions.ElementToBeClickable((ElementsWindows.MenuWindows10))).Click();
 
@@ -105,10 +103,8 @@
             var Precio1 = ConfigWindows.Prices[0];
             ElementsWindows.CardVSPro.Click();
 
-            wait.Until(SeleniumExtras.WaitHelpers.
-                ExpectedConditions.ElementToBeClickable((ElementsWindows.BtnCerrarX)));
+            Action.TryCloseModal();
 
-            ElementsWindows.BtnCerrarX.SafeWaitForDisplayed().Click();
 
 
             Action.compararStrings(By.Id("productPrice"), Precio1);
