@@ -7,6 +7,7 @@
     using Pages;
     using System;
     using System.Linq;
+    using System.Threading;
 
     public  class ActionsWindows : ActionsMicrosoft
     {
@@ -38,7 +39,8 @@
             wait.Until(SeleniumExtras.WaitHelpers.
                 ExpectedConditions.ElementToBeClickable((ElementsWindows.BtnCerrarX)));
 
-            ElementsWindows.BtnCerrarX.Click();
+ 
+            ElementsWindows.BtnCerrarX.SafeWaitForDisplayed().Click();
         }
 
 

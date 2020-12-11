@@ -30,7 +30,12 @@
         [OneTimeSetUp]
         public void Initialize()
         {
-            Action.InitializeDriver();
+ 
+
+            DriversBrowsers WD = new DriverChrome();
+
+            DriversBrowsers.SelectDriver(WD);
+
              wait = new WebDriverWait(Driver.driver, TimeSpan.FromSeconds(60));
 
             ElementsMicrosoft = new WebElementsMicrosoft();
@@ -103,7 +108,7 @@
             wait.Until(SeleniumExtras.WaitHelpers.
                 ExpectedConditions.ElementToBeClickable((ElementsWindows.BtnCerrarX)));
 
-            ElementsWindows.BtnCerrarX.Click();
+            ElementsWindows.BtnCerrarX.SafeWaitForDisplayed().Click();
 
 
             Action.compararStrings(By.Id("productPrice"), Precio1);
@@ -112,8 +117,41 @@
 
         }
 
+        [Test, Order(5)]
 
-            [OneTimeTearDown]
+        public void T5_Validate3Prices()
+        {
+            ElementsWindows.BtnAddCart.Click();
+
+            wait.Until(SeleniumExtras.WaitHelpers.
+                ExpectedConditions.InvisibilityOfElementLocated(By.ClassName("c-progress")));
+
+            Action.CompareStrings(ElementsWindows.Price1, ElementsWindows.Price2, ElementsWindows.Price3);
+
+
+        }
+
+        [Test, Order(6)]
+
+        public void T6_ValidateTotalAmount()
+        {
+            Action.SelectDropDown(
+                By.XPath("//*[@id=\"store-cart-root\"]/div/div/div/section[1]/div/div/div/div/div/div[2]/div[2]/div[1]/select"),
+                "20");
+
+            var PrecioUnit = Action.ConvertToDecimal(ConfigWindows.Prices[0]);
+            var total = (PrecioUnit * 20);
+
+            wait.Until(SeleniumExtras.WaitHelpers.
+                ExpectedConditions.InvisibilityOfElementLocated(By.ClassName("c-progress")));
+
+            Action.compararStrings(
+                By.XPath("//*[@id=\"store-cart-root\"]/div/div/div/section[2]/div/div/div[2]/div/span/span[2]/strong/span"),
+                total.ToString());
+
+        }
+
+        [OneTimeTearDown]
         public void CleanUp()
         {
             //Driver.driver.Quit();
