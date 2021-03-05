@@ -69,6 +69,7 @@
     <Compile Include="Config\ConfigWindows.cs" />
     <Compile Include="Config\ConfigMicrosoft.cs" />
     <Compile Include="Config\Config.cs" />
+    <Compile Include="Pages\LoginPage.cs" />
     <Compile Include="Pages\WebElementsWindows.cs" />
     <Compile Include="Resourses\DriverFireFox.cs" />
     <Compile Include="Resourses\DriverChrome.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="Actions\EntryPoint.cs" />
     <Compile Include="Pages\WebElementsMicrosoft.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scenarios\Radar.cs" />
     <Compile Include="Scenarios\Microsoft.cs" />
   </ItemGroup>
   <ItemGroup>
